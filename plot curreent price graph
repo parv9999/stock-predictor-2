@@ -1,0 +1,18 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load Data from CSV
+df = pd.read_csv("/content/crypto_data.csv")
+
+# Convert timestamp to DateTime
+df["timestamp"] = pd.to_datetime(df["timestamp"])
+
+# Plot Bitcoin Price Over Time
+plt.figure(figsize=(10, 5))
+plt.plot(df["timestamp"], df["price"], label="BTC Price", color="blue")
+plt.xlabel("Timestamp")
+plt.ylabel("Price (USD)")
+plt.title("Bitcoin Price Over Time")
+plt.legend()
+plt.xticks(rotation=45)
+plt.show()
