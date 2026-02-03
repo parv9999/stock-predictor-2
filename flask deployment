@@ -1,0 +1,45 @@
+from flask import Flask, render_template_string
+
+app = Flask(__name__)
+
+# Dummy data (replace this with your actual values)
+df = {"price": [65000]}  # Example BTC price
+predicted_price = [65500]  # Example prediction
+sentiment_score = 0.85  # Example market sentiment score
+
+# HTML template (inline for simplicity)
+html_template = """
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crypto Trading Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        .container { max-width: 500px; margin: auto; padding: 20px; border: 2px solid #ddd; border-radius: 10px; }
+        h1 { color: #333; }
+        p { font-size: 18px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📈 Crypto Trading Dashboard</h1>
+        <p>📌 <b>Current BTC Price:</b> ${{ current_price }}</p>
+        <p>🔮 <b>Predicted Next Price:</b> ${{ predicted_price }}</p>
+        <p>📊 <b>Market Sentiment Score:</b> {{ sentiment_score }}</p>
+    </div>
+</body>
+</html>
+"""
+
+@app.route("/")
+def home():
+    return render_template_string(
+        html_template,
+        current_price=df["price"][-1],
+        predicted_price=predicted_price[0],
+        sentiment_score=sentiment_score
+    )
+
+if __name__ == "__main__":
+    app.run(port=6000, debug=True)
+
