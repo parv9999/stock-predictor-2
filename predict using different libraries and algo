@@ -1,0 +1,135 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
+from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import accuracy_score, mean_squared_error, r2_score
+import xgboost as xgb
+# ... other import statements ...
+from google.colab import files
+
+# Upload the file (this will open a file selection dialog)
+uploaded = files.upload()
+
+# Get the actual filename from the 'uploaded' dictionary
+filename = list(uploaded.keys())[0]
+
+# Read the data using the correct filename
+data = pd.read_csv(filename)
+
+# Generate Target Variables for Prediction
+data['Future_Close'] = data['Close'].shift(-1)  # Predict next day's close
+
+# Drop last row as it has no target value
+data.dropna(inplace=True)
+
+# Split Data into Features (X) and Target (y)
+X = data[['Open', 'High', 'Low', 'Close', 'Volume']]
+y = data['Future_Close']
+
+# Train-Test Split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Standardize Features
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# ----------------------------------------
+# Code 3: SVM for Market Trend Classification
+# ----------------------------------------
+svm_model = SVC(kernel='linear')
+
+# Calculate quantiles to define classes (e.g., 30th and 70th percentiles)
+lower_quantile = np.quantile(y_train, 0.3)
+upper_quantile = np.quantile(y_train, 0.7)
+
+# Create class labels based on quantiles
+y_train_class = np.where(y_train > upper_quantile, 1, np.where(y_train < lower_quantile, 0, -1))
+y_test_class = np.where(y_test > upper_quantile, 1, np.where(y_test < lower_quantile, 0, -1))
+
+# Check if filtering results in empty arrays
+if -1 not in y_train_class:  # If no neutral samples in training data
+    print("Warning: No samples for class -1. Consider adjusting quantiles or using a different classification approach.")
+    # Handle this case, for example, by skipping SVM or adjusting quantiles
+    # Option 1: Skip SVM
+    # Option 2: Adjust quantiles to ensure some samples are in each class
+    lower_quantile = np.quantile(y_train, 0.1)  # Adjust to a lower quantile
+    upper_quantile = np.quantile(y_train, 0.9)  # Adjust to a higher quantile
+
+    # Recalculate class labels with adjusted quantiles
+    y_train_class = np.where(y_train > upper_quantile, 1, np.where(y_train < lower_quantile, 0, -1))
+    y_test_class = np.where(y_test > upper_quantile, 1, np.where(y_test < lower_quantile, 0, -1))
+else:
+    # Remove samples with class label -1 (samples between the quantiles)
+    train_indices = np.where(y_train_class != -1)
+    test_indices = np.where(y_test_class != -1)
+
+# Before filtering, create copies for Linear Regression
+X_train_scaled_lr = X_train_scaled.copy()
+y_train_lr = y_train.copy()
+X_test_scaled_lr = X_test_scaled.copy()
+
+# Apply filter only for SVM
+X_train_scaled = X_train_scaled[train_indices]
+y_train_class = y_train_class[train_indices]
+X_test_scaled = X_test_scaled[test_indices]
+y_test_class = y_test_class[test_indices]
+
+# Fit and predict using SVM
+svm_model.fit(X_train_scaled, y_train_class)
+svm_predictions = svm_model.predict(X_test_scaled)
+
+
+# Calculate and print accuracy for SVM
+svm_accuracy = accuracy_score(y_test_class, svm_predictions)
+print(f"SVM Accuracy: {svm_accuracy:.2f}")
+
+
+
+# ----------------------------------------
+# ----------------------------------------
+# Code 4: Linear Regression for Price Prediction
+# ----------------------------------------
+lr_model = LinearRegression()
+lr_model.fit(X_train_scaled_lr, y_train_lr)  # Use the unfiltered data
+lr_predictions = lr_model.predict(X_test_scaled_lr)  # Use the unfiltered data
+
+# Calculate and print accuracy metrics for Linear Regression
+mse = mean_squared_error(y_test, lr_predictions)
+r2 = r2_score(y_test, lr_predictions)
+
+print(f"Linear Regression - Mean Squared Error (MSE): {mse:.2f}")
+print(f"Linear Regression - R-squared (R2): {r2:.2f}")
+
+
+
+# ----------------------------------------
+# Code 5: Random Forest & XGBoost for Advanced Prediction
+# ----------------------------------------
+rf_model = RandomForestRegressor(n_estimators=100, random_state=42)
+rf_model.fit(X_train, y_train)
+rf_predictions = rf_model.predict(X_test)
+
+xgb_model = xgb.XGBRegressor(n_estimators=100, learning_rate=0.1)
+xgb_model.fit(X_train, y_train)
+xgb_predictions = xgb_model.predict(X_test)
+
+# Calculate and print accuracy metrics for Random Forest and XGBoost
+rf_mse = mean_squared_error(y_test, rf_predictions)
+rf_r2 = r2_score(y_test, rf_predictions)
+xgb_mse = mean_squared_error(y_test, xgb_predictions)
+xgb_r2 = r2_score(y_test, xgb_predictions)
+
+print(f"Random Forest - Mean Squared Error (MSE): {rf_mse:.2f}")
+print(f"Random Forest - R-squared (R2): {rf_r2:.2f}")
+print(f"XGBoost - Mean Squared Error (MSE): {xgb_mse:.2f}")
+print(f"XGBoost - R-squared (R2): {xgb_r2:.2f}")
+
+
+# ... (rest of the code for plotting) ...
+
+print("Model Training and Predictions Completed.")
