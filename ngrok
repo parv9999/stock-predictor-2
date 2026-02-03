@@ -1,0 +1,3 @@
+from pyngrok import ngrok
+
+ngrok.set_auth_token("2uxCKYbHB60l2UOxLToU86tir4y_43FYNDYxPrqbW7YRTRZNm")  # Replace with your actual token
