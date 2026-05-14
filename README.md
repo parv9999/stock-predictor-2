@@ -14,7 +14,15 @@ An AI-powered market intelligence & prediction platform.
 
 Added Advanced Features:
 
-✅ Real-time CoinMarketCap API integration✅ Multiple ML algorithms✅ Sentiment Analysis using NLP✅ Trading signal prediction✅ Visualization dashboard✅ Flask deployment✅ Public hosting using ngrok✅ Modular architecture✅ Real-time market monitoring
+✅ Real-time CoinMarketCap API integration
+✅ Multiple ML algorithms
+✅ Sentiment Analysis using NLP
+✅ Trading signal prediction
+✅ Visualization dashboard
+✅ Flask deployment
+✅ Public hosting using ngrok
+✅ Modular architecture
+✅ Real-time market monitoring
 
 This project demonstrates practical implementation of:
 
