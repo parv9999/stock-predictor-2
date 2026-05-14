@@ -4,7 +4,7 @@
 
 An AI-driven cryptocurrency and stock market prediction platform that combines **machine learning**, **real-time market analysis**, **sentiment analysis**, and **technical indicators** to forecast market trends and generate trading insights.
 
-The system fetches live crypto market data, performs predictive analysis using multiple ML algorithms, analyzes sentiment from textual data, and provides buy/sell signal indications through an interactive dashboard.
+The system fetches live crypto market data, performs predictive analysis using multiple ML algorithms, analyzes sentiment from textual data, and provides buy/sell signal indications through an interactive dashboard..
 
 ### Main Focus:
 
@@ -21,6 +21,7 @@ An AI-powered market intelligence & prediction platform.
 ✅ Public hosting using ngrok
 ✅ Modular architecture
 ✅ Real-time market monitoring
+
 
 
 This project demonstrates practical implementation of:
