@@ -1,289 +1,279 @@
 # 📈 AI-Powered Crypto & Stock Market Prediction System(Advanced Version)
 
-## 🚀 Project Overview
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org/)
+[![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![XGBoost](https://img.shields.io/badge/XGBoost-ML-EC6C00?style=for-the-badge&logo=xgboost&logoColor=white)](https://xgboost.readthedocs.io/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![CoinMarketCap](https://img.shields.io/badge/CoinMarketCap-API-1452F5?style=for-the-badge&logo=coinmarketcap&logoColor=white)](https://coinmarketcap.com/api/)
+[![ngrok](https://img.shields.io/badge/ngrok-Public%20Hosting-1F1E37?style=for-the-badge&logo=ngrok&logoColor=white)](https://ngrok.com/)
 
-An AI-driven cryptocurrency and stock market prediction platform that combines **machine learning**, **real-time market analysis**, **sentiment analysis**, and **technical indicators** to forecast market trends and generate trading insights.
-
-The system fetches live crypto market data, performs predictive analysis using multiple ML algorithms, analyzes sentiment from textual data, and provides buy/sell signal indications through an interactive dashboard..
-
-### Main Focus:
-
-An AI-powered market intelligence & prediction platform.
-
-### Added Advanced Features:
-
-✅ Real-time CoinMarketCap API integration
-✅ Multiple ML algorithms
-✅ Sentiment Analysis using NLP
-✅ Trading signal prediction
-✅ Visualization dashboard
-✅ Flask deployment
-✅ Public hosting using ngrok
-✅ Modular architecture
-✅ Real-time market monitoring
-
-
-
-This project demonstrates practical implementation of:
-
-* Financial data analysis
-* Machine learning for time-series forecasting
-* Sentiment analysis
-* Real-time API integration
-* Data visualization
-* Flask deployment & public hosting
+> An AI-driven cryptocurrency and stock market prediction platform combining **machine learning**, **real-time market data**, **NLP sentiment analysis**, and **technical indicators** to forecast trends and generate actionable buy/sell/hold trading signals — served via an interactive Flask dashboard.
 
 ---
 
-# 🌐 Features
+## 📋 Table of Contents
 
-## 📊 Real-Time Market Data
-
-* Fetches live cryptocurrency market data using APIs
-* Supports Bitcoin and other crypto assets
-* Displays current price trends dynamically
-
-## 🤖 Machine Learning Prediction
-
-Implemented multiple ML algorithms for price forecasting:
-
-* Linear Regression
-* Random Forest
-* XGBoost
-* Time-series based prediction models
-
-Predicts:
-
-* Future price trends
-* Short-term movement
-* Market direction
+- [Overview](#overview)
+- [Features](#features)
+- [System Workflow](#system-workflow)
+- [ML Models](#machine-learning-models)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Core Modules](#core-modules)
+- [Example Outputs](#example-outputs)
+- [Future Enhancements](#future-enhancements)
+- [Author](#author)
 
 ---
 
-## 🧠 Sentiment Analysis
+## 📖 Overview
 
-Analyzes textual market sentiment using NLP techniques.
+This platform serves as an **AI-powered market intelligence system** that fetches live crypto data, runs multiple ML algorithms for price forecasting, scores market sentiment using NLP, and surfaces trading signals through a publicly hosted dashboard.
 
-### Technologies Used:
+### What makes it advanced:
 
-* TextBlob
-* NLP preprocessing
-
-Detects:
-
-* Positive sentiment
-* Negative sentiment
-* Market confidence score
-
----
-
-## 📈 Visualization Dashboard
-
-Interactive visualization features including:
-
-* Live price graphs
-* Trend analysis charts
-* Historical data visualization
-* Prediction plots
+| Capability | Details |
+|---|---|
+| 🔴 Live Data | CoinMarketCap API — real-time Bitcoin & crypto prices |
+| 🤖 Multi-Model ML | Linear Regression, Random Forest, XGBoost |
+| 🧠 NLP Sentiment | TextBlob-based market mood scoring |
+| 🚦 Trading Signals | BUY / SELL / HOLD based on combined indicators |
+| 📊 Visualization | Live price graphs, trend charts, prediction plots |
+| 🌍 Public Access | Flask + ngrok for remote dashboard hosting |
+| 🧩 Modular Design | Each function is an independent, reusable module |
 
 ---
 
-## 🚦 Trading Signal Prediction
+## ✨ Features
 
-Generates:
+### 📊 Real-Time Market Data
+- Fetches live cryptocurrency prices via CoinMarketCap API
+- Supports Bitcoin and other major crypto assets
+- Dynamic price trend display updated in real time
 
-* Buy signals
-* Sell signals
-* Hold indications
+### 🤖 Machine Learning Predictions
+- **Linear Regression** — baseline trend forecasting
+- **Random Forest** — ensemble-based price prediction
+- **XGBoost** — gradient-boosted time-series forecasting
+- Predicts future price direction, short-term movement, and market momentum
 
-Based on:
+### 🧠 Sentiment Analysis
+- NLP preprocessing pipeline using **TextBlob**
+- Scores market text as Positive / Negative
+- Outputs a **market confidence score** that feeds into signal generation
 
-* Technical indicators
-* Price prediction
-* Sentiment score
+### 📈 Visualization Dashboard
+- Live price graphs
+- Historical data overlays
+- Prediction vs. actual trend plots
+- Sentiment and signal visualizations
+
+### 🚦 Trading Signal Generation
+Signals are generated by combining:
+- ML price prediction output
+- Technical indicator analysis
+- NLP sentiment score
+
+Outputs: **BUY** | **SELL** | **HOLD**
+
+### 🌍 Public Deployment
+- Flask web server for dashboard hosting
+- **ngrok** tunnel for instant public URL sharing
 
 ---
 
-## 🌍 Public Deployment
-
-* Flask-based deployment
-* ngrok public URL integration
-* Remote dashboard accessibility
-
----
-
-# 🏗️ System Workflow
+## 🔄 System Workflow
 
 ```
-Market API Data
+CoinMarketCap API
         ↓
-Data Preprocessing
+  Data Fetching & Preprocessing
         ↓
-ML Prediction Models
-        ↓
-Sentiment Analysis
-        ↓
-Signal Generation
-        ↓
-Visualization Dashboard
-        ↓
-Public Deployment
+  ┌─────────────────────────┐
+  │    ML Prediction Models  │
+  │  Linear Regression       │
+  │  Random Forest           │
+  │  XGBoost                 │
+  └───────────┬─────────────┘
+              │
+        Sentiment Analysis (NLP)
+              │
+        Signal Generation
+        (BUY / SELL / HOLD)
+              │
+    Visualization Dashboard
+              │
+    Flask + ngrok Public URL
 ```
 
 ---
 
-# 🛠️ Technologies Used
+## 🤖 Machine Learning Models
 
-## Programming & Backend
+| Model | Type | Use Case |
+|---|---|---|
+| Linear Regression | Supervised | Baseline price trend |
+| Random Forest | Ensemble | Robust price forecasting |
+| XGBoost | Gradient Boost | High-accuracy time-series prediction |
+| Past 5-min Data Model | Time-Series | Short-term movement prediction |
 
-* Python
-* Flask
-
-## Machine Learning
-
-* Scikit-learn
-* XGBoost
-* Pandas
-* NumPy
-
-## NLP & Sentiment Analysis
-
-* TextBlob
-
-## Visualization
-
-* Matplotlib
-
-## APIs & Deployment
-
-* CoinMarketCap API
-* ngrok
+> All models are evaluated against historical price data before generating live signals.
 
 ---
 
-# 📂 Project Structure
+## 🛠️ Tech Stack
+
+| Category | Tools |
+|---|---|
+| **Language** | Python |
+| **Backend / API** | Flask |
+| **ML & Data** | scikit-learn, XGBoost, Pandas, NumPy |
+| **NLP** | TextBlob |
+| **Visualization** | Matplotlib |
+| **Market Data** | CoinMarketCap API |
+| **Public Hosting** | ngrok |
+
+---
+
+## 📁 Project Structure
 
 ```
 stock-predictor-2/
-
 │
-├── fetch data through coinmarket api
-├── flask deployment
-├── ngrok
-├── plot curreent price graph
-├── predict using different libraries and algo
-├── prediction from past data 5 mins
-├── public url
-├── sentimnt score
-├── signal predocitation
+├── fetch_data.py              # CoinMarketCap API data fetching
+├── preprocess.py              # Data cleaning & feature engineering
+├── predict_models.py          # ML prediction (Linear, RF, XGBoost)
+├── prediction_5min.py         # Short-term (5-min) price prediction
+├── sentiment_score.py         # NLP sentiment analysis via TextBlob
+├── signal_prediction.py       # BUY / SELL / HOLD signal generation
+├── plot_price_graph.py        # Live & historical price visualization
+├── app.py                     # Flask dashboard + ngrok public URL
 │
+├── requirements.txt
 └── README.md
 ```
 
 ---
 
-# ⚙️ Installation & Setup
+## 🚀 Getting Started
 
-## 1️⃣ Clone Repository
+### Prerequisites
+- Python 3.8+
+- CoinMarketCap API Key (free tier works) → [Get one here](https://coinmarketcap.com/api/)
+- ngrok account (for public URL) → [ngrok.com](https://ngrok.com/)
 
-```
+### 1. Clone the Repository
+
+```bash
 git clone https://github.com/parv9999/stock-predictor-2.git
-
 cd stock-predictor-2
 ```
 
----
+### 2. Install Dependencies
 
-## 2️⃣ Install Dependencies
-
-```
+```bash
 pip install -r requirements.txt
 ```
 
-If requirements.txt is missing:
+If `requirements.txt` is missing:
 
-```
+```bash
 pip install flask pandas numpy matplotlib scikit-learn textblob xgboost requests
 ```
 
----
+### 3. Set Up API Key
 
-## 3️⃣ Run the Application
+Add your CoinMarketCap API key in the config or directly in `fetch_data.py`:
 
+```python
+API_KEY = "your_coinmarketcap_api_key_here"
 ```
+
+### 4. Run the Application
+
+```bash
 python app.py
 ```
 
-or run individual modules/scripts as required.
+Or run individual modules for testing:
+
+```bash
+python fetch_data.py          # Test live data fetch
+python sentiment_score.py     # Test sentiment analysis
+python predict_models.py      # Test ML predictions
+```
+
+### 5. Access the Dashboard
+
+- **Local:** `http://127.0.0.1:5000`
+- **Public (ngrok):** A public URL will be printed in your terminal automatically
 
 ---
 
-# 🔌 Core Functionalities
+## 🔌 Core Modules
 
-| ModulePurpose     |                             |
-| ----------------- | --------------------------- |
-| CoinMarketCap API | Fetch live market data      |
-| ML Prediction     | Forecast future prices      |
-| Sentiment Score   | Analyze market sentiment    |
-| Signal Prediction | Generate trading indicators |
-| Visualization     | Plot graphs & trends        |
-| Flask Deployment  | Host dashboard publicly     |
-
----
-
-# 📊 Example Outputs
-
-## ✔ Price Prediction
-
-* Predicted future BTC price
-* Short-term market trend
-
-## ✔ Sentiment Analysis
-
-* Positive / Negative score
-* Market mood evaluation
-
-## ✔ Trading Signals
-
-* BUY
-* SELL
-* HOLD
-
-## ✔ Visual Graphs
-
-* Current market trend graph
-* Historical price analysis
+| Module | Purpose |
+|---|---|
+| `fetch_data.py` | Fetch live market data via CoinMarketCap API |
+| `predict_models.py` | Run ML algorithms for price forecasting |
+| `prediction_5min.py` | Short-term 5-minute price movement prediction |
+| `sentiment_score.py` | Analyze market sentiment using NLP |
+| `signal_prediction.py` | Generate BUY / SELL / HOLD trading signals |
+| `plot_price_graph.py` | Visualize price trends and predictions |
+| `app.py` | Flask dashboard + ngrok public hosting |
 
 ---
 
-# 🎯 Learning Outcomes
+## 📊 Example Outputs
 
-This project demonstrates practical understanding of:
+### ✅ Price Prediction
+```
+Predicted BTC Price (next interval): $67,240
+Short-term trend: Upward ↑
+Model used: XGBoost
+```
 
-* Financial market analytics
-* Machine learning workflows
-* Time-series forecasting
-* Sentiment analysis using NLP
-* API integration
-* Flask deployment
-* Real-time dashboard systems
+### ✅ Sentiment Score
+```
+Sentiment: Positive 😊
+Confidence Score: 0.74
+Market Mood: Bullish
+```
+
+### ✅ Trading Signal
+```
+Signal: 🟢 BUY
+Based on: ML prediction (up) + Sentiment (positive) + Indicators (bullish cross)
+```
+
+### ✅ Visual Graphs
+- Live BTC price graph with real-time updates
+- Predicted vs. actual trend overlay
+- Sentiment trend over time
 
 ---
 
-# 🔮 Future Enhancements
+## 🔮 Future Enhancements
 
-* Deep Learning (LSTM / Transformer Models)
-* Real-time auto trading bot
-* Portfolio management system
-* Advanced candlestick charts
-* News-based prediction engine
-* Cloud deployment on AWS
-* Docker & Kubernetes integration
+- [ ] Deep Learning models — LSTM & Transformer architectures
+- [ ] Real-time auto trading bot integration
+- [ ] Portfolio management & performance tracking
+- [ ] Advanced candlestick charting (Plotly/Dash)
+- [ ] News-based prediction engine (live RSS + NLP)
+- [ ] Cloud deployment on AWS
+- [ ] Docker & Kubernetes containerization
 
 ---
 
-# 👨‍💻 Author
+## 👤 Author
 
 **Parv Chauhan**
-B.Tech Computer Science
-VIT Bhopal University
+B.Tech Computer Science — VIT Bhopal University
+
+- GitHub: [@parv9999](https://github.com/parv9999)
+- Email: [parvchauhan36@gmail.com](mailto:parvchauhan36@gmail.com)
+
+---
+
+<p align="center">📉📈 Predicting the market — one model at a time.</p>
